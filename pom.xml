@@ -28,7 +28,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>5.2.4</version>
                 <configuration>
-                    <url>jdbc:h2:./target/greet_db</url>
+                    <url>jdbc:sqlite:/home/codex/Projects/SubjectsDataAutomation/Databases/subject_samples.db</url>
                     <user>sa</user>
                     <password>""</password>
                 </configuration>

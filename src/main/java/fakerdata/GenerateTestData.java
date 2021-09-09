@@ -17,9 +17,9 @@ public class GenerateTestData {
             String subject = faker.educator().course();
             String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
 
-            System.out.println("full_name: " + name + "     |     " +
-                    "school: " + school + "     |     "  +
-                    " address: " + streetAddress + "     |     " +
+            System.out.println("full_name: " + name +
+                    "school: " + school +
+                    " address: " + streetAddress +
                     " subject: " + subject);
         }
 
