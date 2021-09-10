@@ -20,7 +20,7 @@ public class GenerateTestData {
             System.out.println("full_name: " + name +
                     "school: " + school +
                     " address: " + streetAddress +
-                    " subject: " + subject);
+                    " subject.db: " + subject);
         }
 
     }

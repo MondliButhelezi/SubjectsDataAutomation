@@ -28,7 +28,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>5.2.4</version>
                 <configuration>
-                    <url>jdbc:sqlite:/home/codex/Projects/SubjectsDataAutomation/Databases/subject_samples.db</url>
+                    <url>jdbc:sqlite:/home/codex/Projects/SubjectsDataAutomation/src/main/resources/subject.db</url>
                     <user>sa</user>
                     <password>""</password>
                 </configuration>
@@ -64,7 +64,6 @@
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
         </dependency>
-
 
     </dependencies>
 
