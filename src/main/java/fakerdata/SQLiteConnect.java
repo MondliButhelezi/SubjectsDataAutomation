@@ -1,6 +1,9 @@
 package fakerdata;
 
+import com.github.javafaker.Faker;
+
 import java.sql.*;
+import java.util.Locale;
 
 public class SQLiteConnect {
 
@@ -13,18 +16,25 @@ public class SQLiteConnect {
             String sql = "SELECT * FROM fakerTable";
 
             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery(sql);
 
              while (resultSet.next()) {
-                 String name = resultSet.getString("name");
-                 String school = resultSet.getString("school");
-                 String subject = resultSet.getString("subject.db");
-                 String streetAddress = resultSet.getString("streetAddress");
 
-                 System.out.println("full_name: " + name +
-                         "school: " + school +
-                         " address: " + streetAddress +
-                         " subject.db: " + subject);
+                 Faker faker = new Faker(new Locale("en-ZA"));
+
+                 // looping to create data
+                 for (int i = 0; i < 10; i++) {
+
+                     String name = resultSet.getString("name");
+                     String school = resultSet.getString("school");
+                     String subject = resultSet.getString("subject");
+                     String streetAddress = resultSet.getString("streetAddress");
+
+                     System.out.println("full_name: " + name + "   |   " +
+                             " school: " + school + "   |   " +
+                             " address: " + streetAddress + "   |   " +
+                             " subject: " + subject);
+                 }
              }
 
         } catch (SQLException e) {
