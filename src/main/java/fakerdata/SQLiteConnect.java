@@ -9,14 +9,20 @@ public class SQLiteConnect {
 
     public static void main(String[] args) {
 
-        String jdbcUrl = "jdbc:sqlite:/home/codex/Projects/SubjectsDataAutomation/src/main/resources/subject.db";
+        String jdbcUrl = "jdbc:sqlite:/home/codex/Projects/SubjectsDataAutomation/subject.db";
+        Connection connection = null;
 
         try {
-            Connection connection = DriverManager.getConnection(jdbcUrl);
-            String sql = "SELECT * FROM fakerTable";
-
+            connection = DriverManager.getConnection(jdbcUrl);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
+            String insert = "INSERT INTO fakerTable VALUES (?,?,?,?,?)";
+
+            statement.executeUpdate("DROP TABLE IF EXISTS fakerTable");
+            statement.executeUpdate("CREATE TABLE fakerTable (id, name, school, subject, address)");
+            statement.executeUpdate("INSERT INTO fakerTable VALUES(1, 'Ms. Devlin Heyns', 'Flowerlake High', 'Associate Degree in Arts',  '69904 Ole Mill' )");
+            statement.executeUpdate("INSERT INTO fakerTable VALUES(2, 'Jennifer Masemola', 'Brighthurst Secondary College', 'Master of Commerce',  '86578 Broodryk Stravenue' )");
+
+            ResultSet resultSet = statement.executeQuery("select * from fakerTable");
 
              while (resultSet.next()) {
 
@@ -25,15 +31,25 @@ public class SQLiteConnect {
                  // looping to create data
                  for (int i = 0; i < 10; i++) {
 
-                     String name = resultSet.getString("name");
-                     String school = resultSet.getString("school");
-                     String subject = resultSet.getString("subject");
-                     String streetAddress = resultSet.getString("streetAddress");
+                     Integer id = resultSet.getInt("id");
+                     String name = faker.name().fullName();
+                     String school = faker.educator().secondarySchool();
+                     String subject = faker.educator().course();
+                     String streetAddress = faker.address().streetAddress();
 
-                     System.out.println("full_name: " + name + "   |   " +
+                     PreparedStatement pr = connection.prepareStatement(insert);
+                     pr.setInt(1,id);
+                     pr.setString(2, name);
+                     pr.setString(3, school);
+                     pr.setString(4, subject);
+                     pr.setString(5, streetAddress);
+
+                     System.out.println( id + "   |   " + "name: " + name + "   |   " +
                              " school: " + school + "   |   " +
-                             " address: " + streetAddress + "   |   " +
-                             " subject: " + subject);
+                             " subject: " + subject +  "   |   " +
+                             " address: " + streetAddress);
+
+                     pr.executeUpdate();
                  }
              }
 
