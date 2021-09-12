@@ -17,12 +17,13 @@ public class SQLiteConnect {
             statement.executeUpdate("DROP TABLE IF EXISTS fakerTable");
             statement.executeUpdate("CREATE TABLE fakerTable (id INTEGER PRIMARY KEY, name STRING, school STRING, subject STRING, address STRING)");
             statement.executeUpdate("INSERT INTO fakerTable VALUES(1, 'Ms. Devlin Heyns', 'Flowerlake High', 'Associate Degree in Arts',  '69904 Ole Mill' )");
-            ResultSet resultSet = statement.executeQuery("select * from fakerTable");
 
+
+            ResultSet resultSet = statement.executeQuery("select * from fakerTable");
             Faker faker = new Faker(new Locale("en-ZA"));
 
                  // looping to create data
-                 for (int i = 0; i < 10; i++) {
+                 for (int i = 1; i <= 100000; i++) {
 
                      Integer id = resultSet.getInt("id");
                      String name = faker.name().fullName();
@@ -37,7 +38,7 @@ public class SQLiteConnect {
                      pr.setString(4, subject);
                      pr.setString(5, streetAddress);
 
-                     System.out.println( id + "   |   " + "name: " + name + "   |   " +
+                     System.out.println("name: " + name + "   |   " +
                              " school: " + school + "   |   " +
                              " subject: " + subject +  "   |   " +
                              " address: " + streetAddress);
